@@ -12,6 +12,13 @@ public class PharmacyManagementSystem {
         drugs.add(drug);
     }
 
+    public void removeDrug(String name) {
+        if(!drugs.isEmpty()) {
+            drugs.removeIf(d -> d.getDrugName().equals(name));
+        }
+    }
+
+
     public Drug searchDrug(String drugName) {
         for (Drug drug : drugs) {
             if (drug.getDrugName().equalsIgnoreCase(drugName)) {
