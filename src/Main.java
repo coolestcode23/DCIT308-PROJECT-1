@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
         // Example usage
@@ -9,12 +12,14 @@ public class Main {
         Drug drug1 = new Drug(22, "Weed", "A dangerous drug", 20.00, 2, 10, 50);
         Drug drug2 = new Drug(2, "Meth", "A dangerous drug", 20.00, 2, 10, 50);
 
+        Customer customer1 = new Customer(1, "Jonathan", "Okponglo", "0592024394");
+
+
+
+        System.out.println(drug1.getPurchaseHistory());
 
         pharmacySystem.addDrug(drug1);
-        pharmacySystem.addDrug(drug2);
-        pharmacySystem.removeDrug("Weed");
 
-       pharmacySystem.viewAllDrugs();
         }
 };
 

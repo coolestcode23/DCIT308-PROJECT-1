@@ -22,7 +22,7 @@ public class Drug implements Comparable<Drug> {
         this.minStockLevel = minStockLevel;
         this.maxStockLevel = maxStockLevel;
         this.suppliers = new LinkedList<>();
-        this.purchaseHistory = new TreeSet<>((p1, p2) -> p1.getPurchaseDateTime().compareTo(p2.getPurchaseDateTime()));
+        this.purchaseHistory = new TreeSet<>();
     }
 
     public int getDrugId() {
@@ -65,8 +65,21 @@ public class Drug implements Comparable<Drug> {
         suppliers.add(supplier);
     }
 
+    public Supplier searchSupplier(String supplierName, String address, String phoneNumber) {
+        for(Supplier s: suppliers) {
+            if(s.getSupplierName().equals(supplierName) || s.getSupplierAddress().equals(address) || s.getSupplierPhone().equals(phoneNumber)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
     public void addPurchase(Purchase purchase) {
         purchaseHistory.add(purchase);
+    }
+
+    public String toString() {
+        return drugId + ": " + drugName;
     }
 
     @Override
