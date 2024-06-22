@@ -1,10 +1,20 @@
 package org.school.pharmacyui.models;
 
-// Supplier class
+import javax.persistence.*;
+
+@Entity
 public class Supplier {
+    @Id
+    @Column(name = "supplier_id")
     private int supplierId;
+
+    @Column(name = "supplier_name")
     private String supplierName;
+
+    @Column(name = "supplier_address")
     private String supplierAddress;
+
+    @Column(name = "supplier_phone")
     private String supplierPhone;
 
     public Supplier(int supplierId, String supplierName, String supplierAddress, String supplierPhone) {
