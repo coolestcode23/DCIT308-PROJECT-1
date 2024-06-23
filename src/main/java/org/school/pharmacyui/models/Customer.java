@@ -19,7 +19,7 @@ public class Customer {
     @Column(name = "customer_phone")
     private String customerPhone;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Purchase> purchaseHistory;
 
     public Customer(int customerId, String customerName, String customerAddress, String customerPhone) {

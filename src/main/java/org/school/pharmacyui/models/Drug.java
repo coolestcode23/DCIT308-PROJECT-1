@@ -32,7 +32,7 @@ public class Drug implements Comparable<Drug> {
     @Column(name = "max_stock_level")
     private int maxStockLevel;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Supplier.class)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Supplier> suppliers = new LinkedList<>();
 
     // required by hibernate

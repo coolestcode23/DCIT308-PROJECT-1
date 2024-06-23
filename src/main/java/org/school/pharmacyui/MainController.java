@@ -59,7 +59,6 @@ public class MainController {
             addressLabel.setText(customer.getCustomerAddress());
             phoneLabel.setText(customer.getCustomerPhone());
 
-
             List<Purchase> ps = customer.getPurchaseHistory().stream().collect(Collectors.toList());
             Utils.initializePurchasesTable(ps, purchasesTable);
         }
@@ -202,8 +201,6 @@ public class MainController {
     }
 
     public void initialize() {
-//        Data.populateDatabase();
-
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             drugs = session.createQuery("from Drug", Drug.class).getResultList();
             suppliers = session.createQuery("from Supplier", Supplier.class).getResultList();

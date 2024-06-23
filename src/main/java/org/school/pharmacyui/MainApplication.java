@@ -14,6 +14,9 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+//        Populate database with dummy data
+//        Data.populateDatabase();
+
         stackPane = new StackPane();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         stackPane.getChildren().add(fxmlLoader.load());

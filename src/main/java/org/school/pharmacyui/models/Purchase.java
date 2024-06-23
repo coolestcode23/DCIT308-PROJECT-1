@@ -15,7 +15,7 @@ public class Purchase implements Comparable<Purchase> {
     @JoinColumn(name = "drug_id")
     private Drug drug;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
