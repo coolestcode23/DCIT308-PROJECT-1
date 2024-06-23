@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.school.pharmacyui.models.Drug;
 
 import java.io.IOException;
 
@@ -36,12 +35,21 @@ public class MainApplication extends Application {
         stackPane.getChildren().add(root);
     }
 
-    public void navigate(Utils.Page page, int drugId) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(Utils.getPageViewName(page)));
+    public void navigateToDrugDetails(int drugId) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Utils.getPageViewName(Utils.Page.DRUG_DETAILS)));
         Parent root = loader.load();
         MainController controller = loader.getController();
         controller.setMainApp(this);
-        controller.setDrugId(drugId);
+        controller.loadDrugDetails(drugId);
+        stackPane.getChildren().add(root);
+    }
+
+    public void navigateToCustomerDetails(int customerId) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Utils.getPageViewName(Utils.Page.CUSTOMER_DETAILS)));
+        Parent root = loader.load();
+        MainController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.loadCustomerDetails(customerId);
         stackPane.getChildren().add(root);
     }
 

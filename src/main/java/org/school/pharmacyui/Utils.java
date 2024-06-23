@@ -26,6 +26,7 @@ public class Utils {
         CUSTOMERS,
         ADD_DRUGS,
         DRUG_DETAILS,
+        CUSTOMER_DETAILS,
     }
 
     public static String getPageViewName(Page page) {
@@ -40,6 +41,8 @@ public class Utils {
                 return "suppliers-view.fxml";
             case DRUG_DETAILS:
                 return "drug-details-view.fxml";
+            case CUSTOMER_DETAILS:
+                return "customer-details-view.fxml";
             default:
                 return "main-view.fxml";
         }
@@ -76,7 +79,7 @@ public class Utils {
                     if (event.getClickCount() == 1 && (!row.isEmpty())) {
                         Drug drug = row.getItem();
                         try {
-                            mainApp.navigate(Page.DRUG_DETAILS, drug.getDrugId());
+                            mainApp.navigateToDrugDetails(drug.getDrugId());
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -117,7 +120,7 @@ public class Utils {
         }
     }
 
-    public static void initializeCustomersTable(List<Customer> customers, TableView<Customer> table) {
+    public static void initializeCustomersTable(List<Customer> customers, TableView<Customer> table, MainApplication mainApp) {
         if (table != null) {
             table.setEditable(false);
             ObservableList<Customer> data = FXCollections.observableArrayList(customers);
@@ -133,6 +136,21 @@ public class Utils {
 
             TableColumn<Customer, String> col4 = (TableColumn<Customer, String>) table.getColumns().get(3);
             col4.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCustomerPhone()));
+
+            table.setRowFactory(tv -> {
+                TableRow<Customer> row = new TableRow<>();
+                row.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                        Customer customer = row.getItem();
+                        try {
+                            mainApp.navigateToCustomerDetails(customer.getCustomerId());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+                return row;
+            });
 
             table.setItems(data);
         }

@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa90e8c-d734-4860-99cc-0f063efe57c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/drug-details-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/customer-details-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/MyJDBC.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Drug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Drug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/school/pharmacyui/models/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/add-drug-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/add-drug-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/drug-details-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/school/pharmacyui/drug-details-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

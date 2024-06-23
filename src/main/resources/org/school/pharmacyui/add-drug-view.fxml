@@ -8,6 +8,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ScrollPane?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.Region?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.school.pharmacyui.MainController" stylesheets="@styles.css">
     <left>
         <VBox spacing="10" styleClass="sidebar">
@@ -20,52 +23,61 @@
 
     <center>
         <ScrollPane fitToWidth="true" fitToHeight="true">
-        <VBox style="-fx-background-color: #F1F1F1; -fx-padding: 35px 45px; -fx-spacing: 25px;">
-            <Text style="-fx-font-size: 20px; -fx-font-weight: bold;">Add New Drug</Text>
+                <VBox style="-fx-background-color: #F1F1F1; -fx-padding: 40px 50px; -fx-spacing: 25px;">
+                    <Text style="-fx-font-size: 20px; -fx-font-weight: bold;">Add New Drug</Text>
 
-                <VBox spacing="10">
-                    <Label text="Name" />
-                    <TextField fx:id="name" styleClass="form-text-field" />
+                    <HBox>
+                        <VBox style="-fx-spacing: 20px; -fx-padding: 0 60px 0 0; -fx-pref-width: 450px;">
+                            <VBox spacing="10">
+                                <Label text="Name" />
+                                <TextField fx:id="name" styleClass="form-text-field" />
+                            </VBox>
+
+                            <VBox spacing="10">
+                                <Label text="Description" />
+                                <TextField fx:id="description" styleClass="form-text-field" />
+                            </VBox>
+
+                            <VBox spacing="10">
+                                <Label text="Price" />
+                                <TextField fx:id="price" styleClass="form-text-field" />
+                            </VBox>
+
+                            <VBox spacing="10">
+                                <Label text="Quantity" />
+                                <TextField fx:id="quantity" styleClass="form-text-field" />
+                            </VBox>
+
+                            <VBox spacing="10">
+                                <Label text="Minimum Stock Level" />
+                                <TextField fx:id="minStock" styleClass="form-text-field" />
+                            </VBox>
+
+                            <VBox spacing="10">
+                                <Label text="Maximum Stock Level" />
+                                <TextField fx:id="maxStock" styleClass="form-text-field" />
+                            </VBox>
+
+                            <!--            <ComboBox fx:id="selectField" promptText="Select drug supplier" style="-fx-pref-height: 38px;" VBox.vgrow="ALWAYS">-->
+                            <!--                <items>-->
+                            <!--                    <FXCollections fx:factory="observableArrayList">-->
+                            <!--                        <String fx:value="Supplier 1" />-->
+                            <!--                        <String fx:value="Supplier 2" />-->
+                            <!--                        <String fx:value="Supplier 3" />-->
+                            <!--                    </FXCollections>-->
+                            <!--                </items>-->
+                            <!--            </ComboBox>-->
+
+                            <Button text="Add Drug" styleClass="btn" onAction="#addNewDrug" />
+                        </VBox>
+                        <VBox style="-fx-spacing: 16px">
+                            <Label text="Choose Suppliers" />
+                        <VBox fx:id="supplierCheckboxes" style="-fx-spacing: 16px" />
+
+                        </VBox>
+                    </HBox>
                 </VBox>
 
-                <VBox spacing="10">
-                    <Label text="Description" />
-                    <TextField fx:id="description" styleClass="form-text-field" />
-                </VBox>
-
-                <VBox spacing="10">
-                    <Label text="Price" />
-                    <TextField fx:id="price" styleClass="form-text-field" />
-                </VBox>
-
-
-                <VBox spacing="10">
-                    <Label text="Quantity" />
-                    <TextField fx:id="quantity" styleClass="form-text-field" />
-                </VBox>
-
-                <VBox spacing="10">
-                    <Label text="Minimum Stock Level" />
-                    <TextField fx:id="minStock" styleClass="form-text-field" />
-                </VBox>
-
-                <VBox spacing="10">
-                    <Label text="Maximum Stock Level" />
-                    <TextField fx:id="maxStock" styleClass="form-text-field" />
-                </VBox>
-
-<!--            <ComboBox fx:id="selectField" promptText="Select drug supplier" style="-fx-pref-height: 38px;" VBox.vgrow="ALWAYS">-->
-<!--                <items>-->
-<!--                    <FXCollections fx:factory="observableArrayList">-->
-<!--                        <String fx:value="Supplier 1" />-->
-<!--                        <String fx:value="Supplier 2" />-->
-<!--                        <String fx:value="Supplier 3" />-->
-<!--                    </FXCollections>-->
-<!--                </items>-->
-<!--            </ComboBox>-->
-
-            <Button text="Add Drug" styleClass="btn" onAction="#addNewDrug" />
-        </VBox>
         </ScrollPane>
     </center>
 </BorderPane>
