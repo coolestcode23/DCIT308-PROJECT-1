@@ -24,6 +24,10 @@ public class Supplier {
         this.supplierPhone = supplierPhone;
     }
 
+    // required by hibernate
+    public Supplier() {
+    }
+
     public int getSupplierId() {
         return supplierId;
     }

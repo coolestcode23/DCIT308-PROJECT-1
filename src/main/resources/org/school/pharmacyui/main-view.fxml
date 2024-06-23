@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Region?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.school.pharmacyui.MainController" stylesheets="@styles.css">
-    <!-- Sidebar -->
     <left>
         <VBox spacing="10" styleClass="sidebar">
             <Button onAction="#goToDrugsScreen" text="Drugs" styleClass="sidebar-button-active"/>
@@ -23,7 +19,6 @@
         </VBox>
     </left>
 
-    <!-- Main Content Area -->
     <center>
         <VBox style="-fx-background-color: #F1F1F1; -fx-padding: 35px; -fx-spacing: 33px;">
             <HBox>
@@ -46,7 +41,6 @@
                     <TableColumn text="Maximum Stock Level" />
                 </columns>
             </TableView>
-
         </VBox>
     </center>
 </BorderPane>

@@ -4,6 +4,8 @@ package org.school.pharmacyui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.school.pharmacyui.models.Customer;
 import org.school.pharmacyui.models.Drug;
 import javafx.scene.control.TableView;
@@ -11,26 +13,35 @@ import org.school.pharmacyui.models.Purchase;
 import org.school.pharmacyui.models.Supplier;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.List;
 
 public class MainController {
     private MainApplication mainApp;
 
-    private LinkedList<Drug> drugs;
-    private LinkedList<Purchase> purchases;
-    private LinkedList<Customer> customers;
-    private LinkedList<Supplier> suppliers;
+    private List<Drug> drugs;
+    private List<Purchase> purchases;
+    private List<Customer> customers;
+    private List<Supplier> suppliers;
 
     public void setMainApp(MainApplication mainApp) {
         this.mainApp = mainApp;
+        Utils.initializeDrugsTable(drugs, drugsTable, mainApp);
     }
 
-    @FXML
-    private Label welcomeText;
+    public void setDrugId(int drugId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+             Drug drug = session.get(Drug.class, drugId);
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+            nameLabel.setText(drug.getDrugName());
+            descriptionLabel.setText(drug.getDrugDescription());
+            priceLabel.setText(String.valueOf(drug.getDrugPrice()));
+            quantityLabel.setText(String.valueOf(drug.getDrugQuantity()));
+            minStockLabel.setText(String.valueOf(drug.getMinStockLevel()));
+            maxStockLabel.setText(String.valueOf(drug.getMaxStockLevel()));
+
+            List<Supplier> sups = drug.getSuppliers();
+            Utils.initializeSuppliersTable(sups, suppliersTable);
+        }
     }
 
     @FXML
@@ -92,16 +103,40 @@ public class MainController {
     private TextField maxStock;
 
     @FXML
+    private Label searchLabel;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label descriptionLabel;
+
+    @FXML
+    private Label priceLabel;
+
+    @FXML
+    private Label quantityLabel;
+
+    @FXML
+    private Label minStockLabel;
+
+    @FXML
+    private Label maxStockLabel;
+
+    @FXML
     public void addNewDrug() throws IOException {
         Drug newDrug = new Drug(drugs.size() + 1, name.getText(), description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(quantity.getText()), Integer.parseInt(minStock.getText()), Integer.parseInt(maxStock.getText()));
-        drugs.push(newDrug);
-        Utils.initializeDrugsTable(drugs, drugsTable);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.save(newDrug);
+            transaction.commit();
+        }
         mainApp.navigate(Utils.Page.DRUGS);
     }
 
     @FXML
     public void onDrugSearch() {
-        Utils.initializeDrugsTable(Utils.searchDrugs(search.getText(), drugs), drugsTable);
+        Utils.initializeDrugsTable(Utils.searchDrugs(search.getText(), drugs), drugsTable, mainApp);
     }
 
     @FXML
@@ -120,12 +155,16 @@ public class MainController {
     }
 
     public void initialize() {
-        drugs = Data.getDrugs();
-        purchases = Data.getPurchases();
-        customers = Data.getCustomers();
-        suppliers = Data.getSuppliers();
+//        Data.populateDatabase();
 
-        Utils.initializeDrugsTable(drugs, drugsTable);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            drugs = session.createQuery("from Drug", Drug.class).getResultList();
+            suppliers = session.createQuery("from Supplier", Supplier.class).getResultList();
+            customers = session.createQuery("from Customer", Customer.class).getResultList();
+            purchases = session.createQuery("from Purchase", Purchase.class).getResultList();
+        }
+
+        Utils.initializeDrugsTable(drugs, drugsTable, mainApp);
         Utils.initializePurchasesTable(purchases, purchasesTable);
         Utils.initializeCustomersTable(customers, customersTable);
         Utils.initializeSuppliersTable(suppliers, suppliersTable);

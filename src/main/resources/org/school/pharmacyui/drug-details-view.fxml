@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Label?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.school.pharmacyui.MainController" stylesheets="@styles.css">
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+            <Button onAction="#goToDrugsScreen" text="Drugs" styleClass="sidebar-button-active"/>
+            <Button onAction="#goToPurchasesScreen" text="Purchases" styleClass="sidebar-button"/>
+            <Button onAction="#goToCustomersScreen" text="Customers" styleClass="sidebar-button"/>
+            <Button onAction="#goToSuppliersScreen" text="Suppliers" styleClass="sidebar-button"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox style="-fx-background-color: #F1F1F1; -fx-padding: 35px;">
+            <HBox style="-fx-padding: 0 0 33px 0">
+                <VBox>
+                    <Label fx:id="nameLabel" style="-fx-font-size: 22px; -fx-font-weight: bolder; -fx-padding: 0 0 10px 0" />
+                    <Label fx:id="descriptionLabel" style="-fx-padding: 0 0 10px 0;" />
+
+                    <HBox style="-fx-padding: 0 0 10px 0;"><Label text="Quantity:" style="-fx-text-fill: #888888" /> <Label fx:id="quantityLabel" style="-fx-padding: 0 0 0 4px;" /></HBox>
+                    <HBox style="-fx-padding: 0 0 10px 0;"><Label text="Minimum Stock Level:" style="-fx-text-fill: #888888" />  <Label fx:id="minStockLabel" style="-fx-padding: 0 0 0 4px;" /></HBox>
+                    <HBox><Label text="Maximum Stock Level:" style="-fx-text-fill: #888888"/> <Label fx:id="maxStockLabel" style="-fx-padding: 0 0 0 4px;" /></HBox>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox>
+                    <Label text="GHS" style="-fx-text-fill: #5064F5; -fx-font-weight: bolder; -fx-font-size: 16px;" />
+                    <Label fx:id="priceLabel" style="-fx-padding: 0 0 0 3px; -fx-text-fill: #5064F5; -fx-font-weight: bolder; -fx-font-size: 16px;" />
+                </HBox>
+            </HBox>
+
+
+            <Label text="SUPPLIERS" style="-fx-padding: 0 0 15px 0" />
+
+            <TableView fx:id="suppliersTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="ID" />
+                    <TableColumn text="Name" />
+                    <TableColumn text="Address" />
+                    <TableColumn text="Phone Number" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.school.pharmacyui.models.Customer;
@@ -15,6 +16,7 @@ import org.school.pharmacyui.models.Supplier;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Utils {
     public static enum Page {
@@ -43,7 +45,7 @@ public class Utils {
         }
     }
 
-    public static void initializeDrugsTable(LinkedList<Drug> drugs, TableView<Drug> table) {
+    public static void initializeDrugsTable(List<Drug> drugs, TableView<Drug> table, MainApplication mainApp) {
         if(table != null) {
             ObservableList<Drug> data = FXCollections.observableArrayList(drugs);
 
@@ -68,11 +70,27 @@ public class Utils {
             TableColumn<Drug, String> drugMaxStockCol = (TableColumn<Drug, String>) table.getColumns().get(6);
             drugMaxStockCol.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getMaxStockLevel())));
 
+            table.setRowFactory(tv -> {
+                TableRow<Drug> row = new TableRow<>();
+                row.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1 && (!row.isEmpty())) {
+                        Drug drug = row.getItem();
+                        try {
+                            mainApp.navigate(Page.DRUG_DETAILS, drug.getDrugId());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+                return row;
+            });
+
+
             table.setItems(data);
         }
     }
 
-    public static void initializePurchasesTable(LinkedList<Purchase> purchases, TableView<Purchase> table) {
+    public static void initializePurchasesTable(List<Purchase> purchases, TableView<Purchase> table) {
         if (table != null) {
             table.setEditable(false);
             ObservableList<Purchase> data = FXCollections.observableArrayList(purchases);
@@ -99,7 +117,7 @@ public class Utils {
         }
     }
 
-    public static void initializeCustomersTable(LinkedList<Customer> customers, TableView<Customer> table) {
+    public static void initializeCustomersTable(List<Customer> customers, TableView<Customer> table) {
         if (table != null) {
             table.setEditable(false);
             ObservableList<Customer> data = FXCollections.observableArrayList(customers);
@@ -120,7 +138,7 @@ public class Utils {
         }
     }
 
-    public static void initializeSuppliersTable(LinkedList<Supplier> suppliers, TableView<Supplier> table) {
+    public static void initializeSuppliersTable(List<Supplier> suppliers, TableView<Supplier> table) {
         if (table != null) {
             table.setEditable(false);
             ObservableList<Supplier> data = FXCollections.observableArrayList(suppliers);
@@ -141,7 +159,7 @@ public class Utils {
         }
     }
 
-    public static LinkedList<Drug> searchDrugs(String search, LinkedList<Drug> drugs) {
+    public static List<Drug> searchDrugs(String search, List<Drug> drugs) {
         LinkedList<Drug> result = new LinkedList<>();
 
         for(Drug drug: drugs) {
@@ -153,7 +171,7 @@ public class Utils {
         return result;
     }
 
-    public static LinkedList<Purchase> searchPurchases(String search, LinkedList<Purchase> purchases) {
+    public static List<Purchase> searchPurchases(String search, List<Purchase> purchases) {
         LinkedList<Purchase> result = new LinkedList<>();
 
         for(Purchase purchase: purchases) {
@@ -165,7 +183,7 @@ public class Utils {
         return result;
     }
 
-    public static LinkedList<Customer> searchCustomers(String search, LinkedList<Customer> customers) {
+    public static List<Customer> searchCustomers(String search, List<Customer> customers) {
         LinkedList<Customer> result = new LinkedList<>();
 
         for(Customer customer: customers) {
@@ -177,11 +195,11 @@ public class Utils {
         return result;
     }
 
-    public static LinkedList<Supplier> searchSuppliers(String search, LinkedList<Supplier> suppliers) {
+    public static List<Supplier> searchSuppliers(String search, List<Supplier> suppliers) {
         LinkedList<Supplier> result = new LinkedList<>();
 
         for(Supplier supplier: suppliers) {
-            if(supplier.getSupplierName().toLowerCase().contains(search.toLowerCase())) {
+            if(supplier.getSupplierName().toLowerCase().contains(search.toLowerCase()) || supplier.getSupplierAddress().toLowerCase().contains(search.toLowerCase())) {
                 result.add(supplier);
             }
         }
